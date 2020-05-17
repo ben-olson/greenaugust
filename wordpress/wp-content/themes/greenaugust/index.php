@@ -1,73 +1,94 @@
 <?php get_header(); ?>
+
 <div class="container">
 
 <?php
-  if (have_posts()) :
 
-    $argsArray = array(
-      array(
-        'posts_per_page' => 4
-      ),
-      array(
-        'category_name' => 'interview',
-        'posts_per_page' => 4
-      ),
-      array(
-        'category_name' => 'freewrite',
-        'posts_per_page' => 4
-      ),
-      array(
-        'category_name' => 'culture',
-        'posts_per_page' => 3
-      ),
-      array(
-        'category_name' => 'travel',
-        'posts_per_page' => 4
-      )
-    );
+if (have_posts()) :
+  // Gets the menu items associated with the primary headers on the homepage and
+  // sets the the posts per category to 4
+  $menuItems = wpb_get_menu_items('headers');
+  $args = array('posts_per_page' => 4);
+  $query = new WP_Query($args);
+
+?>
+
+  <div class="row">
+
+  <!-- Loops 4 most recent posts for the first category -->
+  <?php while ($query->have_posts()) : ?>
+
+  <div class="col-sm">
+
+  <?php
+  $query->the_post();
+  get_template_part( 'content', get_post_format() );
   ?>
-    <?php foreach ($argsArray as $args) : ?>
-      <div class="row">
-        <?php
-          $query = new WP_Query($args);
-          while ($query->have_posts()) :
-        ?>
-            <div class="col-sm">
-            <?php
-              $query->the_post();
-              get_template_part( 'content', get_post_format() );
-            ?>
-            </div>
-          <?php
-          endwhile;
-          unset($args);
-          ?>
-      </div>
-    <?php endforeach; ?>
+
   </div>
+
+  <?php
+  endwhile;
+  unset($query);
+  ?>
+  <!-- Ends Recent Loop -->
+
+  </div>
+
+  <!-- Starts the main Loop for categories/tags from the primary nav menu -->
+  <?php
+  foreach ($menuItems as $item) :
+
+    // Determines if the menu term is a category or tag
+    if (term_exists($item->title, 'post_tag')) {
+      $args = array(
+        'posts_per_page' => 4,
+        'tag_id' => $item->object_id
+      );
+
+    } elseif (term_exists($item->title, 'category')) {
+      $args = array(
+        'posts_per_page' => 4,
+        'cat' => $item->object_id
+      );
+    }
+
+  ?>
+    <!-- Displays the category/tag as the header -->
+    <div class="category-header">
+      <?php echo ucfirst((string)$item->title); ?>
+    </div>
+
+    <!-- Declares rows for displaying posts -->
+    <div class="row">
+
+      <?php
+      $query = new WP_Query($args);
+      while ($query->have_posts()) :
+      ?>
+
+      <!-- Columnizes each post -->
+      <div class="col-sm">
+
+      <?php
+      $query->the_post();
+      get_template_part( 'content', get_post_format() );
+      ?>
+
+      </div>
+
+      <?php
+      endwhile;
+      unset($args);
+      ?>
+
+    </div>
+
+  <?php endforeach; ?>
+  <!-- Ends the main Loop -->
+
+</div>
 
 <?php endif; ?>
-
-<div class="container">
-  <div class="row">
-    <div class="col">
-      1 of 2
-    </div>
-    <div class="col">
-      2 of 2
-    </div>
-  </div>
-  <div class="row">
-    <div class="col">
-      1 of 3
-    </div>
-    <div class="col">
-      2 of 3
-    </div>
-    <div class="col">
-      3 of 3
-    </div>
-  </div>
-</div>
 
 <?php get_footer(); ?>

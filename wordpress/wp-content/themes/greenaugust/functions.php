@@ -6,7 +6,30 @@ function greenaugust_scripts() {
 	wp_enqueue_script( 'bootstrap', get_template_directory_uri() . '/js/bootstrap.min.js', array( 'jquery' ), '4.5.0', true );
 }
 
-add_action( 'wp_enqueue_scripts', 'greenaugust_scripts' );
+function wpb_custom_new_menus() {
+  register_nav_menus(
+    array(
+      'headers' => __( 'Primary Headers', 'greenaugust' ),
+      'nav-menu' => __( 'Navigation Bar Menu', 'greenaugust' ),
+    )
+  );
+}
+
+function wpb_get_menu_items($location_id){
+    $menus = wp_get_nav_menus();
+    $menu_locations = get_nav_menu_locations();
+
+    if (isset($menu_locations[ $location_id ]) && $menu_locations[ $location_id ]!=0) {
+        foreach ($menus as $menu) {
+            if ($menu->term_id == $menu_locations[ $location_id ]) {
+                $menu_items = wp_get_nav_menu_items($menu);
+                break;
+            }
+        }
+        return $menu_items;
+    }
+}
+
 
 // Add Google Fonts
 function startwordpress_google_fonts() {
@@ -20,7 +43,9 @@ add_theme_support('title-tag');
 add_theme_support('post-thumbnails');
 set_post_thumbnail_size(100, 100);
 
-add_action('wp_print_styles', 'startwordpress_google_fonts');
+add_action( 'init', 'wpb_custom_new_menus' );
+add_action( 'wp_enqueue_scripts', 'greenaugust_scripts' );
+add_action( 'wp_print_styles', 'startwordpress_google_fonts' );
 
 
 
