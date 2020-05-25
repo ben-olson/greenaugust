@@ -1,6 +1,6 @@
 <?php get_header(); ?>
 
-<div class="container">
+<div class="container-fluid px-5 index justify-content-center">
 
 <?php
 
@@ -13,22 +13,13 @@ if (have_posts()) :
 
 ?>
 
-  <div class="row">
+  <div class="row justify-content-center">
 
   <!-- Loops 4 most recent posts for the first category -->
-  <?php while ($query->have_posts()) : ?>
-
-  <div class="col-sm">
-
-  <?php
-  $query->the_post();
-  get_template_part( 'content', get_post_format() );
-  ?>
-
-  </div>
-
-  <?php
-  endwhile;
+  <?php while ($query->have_posts()) {
+    $query->the_post();
+    get_template_part( 'content', get_post_format() );
+  }
   unset($query);
   ?>
   <!-- Ends Recent Loop -->
@@ -60,25 +51,14 @@ if (have_posts()) :
     </div>
 
     <!-- Declares rows for displaying posts -->
-    <div class="row">
+    <div class="row justify-content-center">
 
       <?php
       $query = new WP_Query($args);
-      while ($query->have_posts()) :
-      ?>
-
-      <!-- Columnizes each post -->
-      <div class="col-sm">
-
-      <?php
-      $query->the_post();
-      get_template_part( 'content', get_post_format() );
-      ?>
-
-      </div>
-
-      <?php
-      endwhile;
+      while ($query->have_posts()) {
+        $query->the_post();
+        get_template_part( 'content', get_post_format() );
+      }
       unset($args);
       ?>
 

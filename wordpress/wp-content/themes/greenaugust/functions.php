@@ -2,8 +2,8 @@
 
 function greenaugust_scripts() {
 	wp_enqueue_style( 'bootstrap', get_template_directory_uri() . '/css/bootstrap.min.css', array(), '4.5.0', 'all' );
-	wp_enqueue_style( 'styles', get_template_directory_uri() . '/css/style.css', array(), false, 'all' );
-	wp_enqueue_script( 'bootstrap', get_template_directory_uri() . '/js/bootstrap.min.js', array( 'jquery' ), '4.5.0', true );
+	wp_enqueue_style( 'styles', get_template_directory_uri() . '/css/style.css', array(), NULL, 'all' );
+	wp_enqueue_script( 'bootstrap', get_template_directory_uri() . '/js/bootstrap.bundle.min.js', array( 'jquery' ), '4.5.0', true );
 }
 
 function wpb_custom_new_menus() {
@@ -41,7 +41,8 @@ function startwordpress_google_fonts() {
 add_theme_support('title-tag');
 //Post thumbnails & featured images
 add_theme_support('post-thumbnails');
-set_post_thumbnail_size(100, 100);
+set_post_thumbnail_size(700, 9999);
+add_image_size( 'homepage-thumbnail', 300, 300); // Soft Crop Mode
 
 add_action( 'init', 'wpb_custom_new_menus' );
 add_action( 'wp_enqueue_scripts', 'greenaugust_scripts' );

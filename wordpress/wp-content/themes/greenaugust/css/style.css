@@ -1,7 +1,47 @@
 /*
-Theme Name: Green August
-Author: Ben Olson
-Description: A simple Wordpress theme designed with homepage categories and page transitions.
-Version: 0.0.1
-Tags: bootstrap
+Theme Name: Green August: ;
+Theme URI: https://wordpress.org/themes/greenaugust/
+Author: Benjamin Olson
+Author URI: https://ben-olson.com
+Description: Green August is a theme that allows users to control gallery-style style pages in a
+simple, effective presentation.
+Version: 1.0
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: greenaugust
+Tags: one-column, two-columns, right-sidebar, flexible-header, accessibility-ready, custom-colors, custom-header, custom-menu, custom-logo, editor-style, featured-images, footer-widgets, post-formats, rtl-language-support, sticky-post, theme-options, threaded-comments, translation-ready
+This theme, like WordPress, is licensed under the GPL.
 */
+
+body {
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  font-size: 11pt;
+}
+
+/* .post-thumbnail {
+  height: auto;
+  width: 350px;
+}
+
+.thumbnail-image {
+
+} */
+
+
+.header {
+  padding: 50px;
+}
+
+/* .index {
+  margin: 50px;
+} */
+
+.nav-bar {
+}
+
+.category-header {
+  margin: 25px 0;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 16pt;
+}
