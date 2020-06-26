@@ -1,5 +1,5 @@
 /*
-Theme Name: Green August: ;
+Theme Name: Green August
 Theme URI: https://wordpress.org/themes/greenaugust/
 Author: Benjamin Olson
 Author URI: https://ben-olson.com
@@ -13,35 +13,193 @@ Tags: one-column, two-columns, right-sidebar, flexible-header, accessibility-rea
 This theme, like WordPress, is licensed under the GPL.
 */
 
-body {
-  font-family: "Helvetica Neue", Arial, sans-serif;
-  font-size: 11pt;
+/* Lato Font Family, Playfair Display Font Family, Playfair Display SC */
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Playfair+Display+SC:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,669;0,700;0,800;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+.body-copy, .menu-item {
+  font-size: 10pt;
+  font-family: "Lato", sans-serif;
 }
 
-/* .post-thumbnail {
-  height: auto;
-  width: 350px;
+.site-title, .display-sc-heading, .category-header {
+  font-family: "Playfair Display SC", serif;
 }
 
-.thumbnail-image {
-
-} */
-
+.post-title, .display-heading {
+  font-family: "Playfair Display", serif;
+}
 
 .header {
-  padding: 50px;
+  position: relative;
 }
 
-/* .index {
-  margin: 50px;
-} */
-
-.nav-bar {
+.site-title {
+  position: fixed;
+  top: 12%;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
 }
 
 .category-header {
-  margin: 25px 0;
-  text-transform: uppercase;
-  font-weight: bold;
-  font-size: 16pt;
+  text-align: center;
+  font-size: 1.5rem;
+  padding: 15px 0;
+  background-color: white;
+  transition: all 0.3s ease 0s;
 }
+
+.body {
+  position: relative;
+  z-index: 1;
+}
+
+html:not([data-scroll='0']) .category-header {
+  box-shadow: 0 -3px 5px rgb(175, 175, 175);
+}
+
+html:not([data-scroll='0']) .site-title {
+  font-size: 2rem;
+}
+
+.menu-navigation-menu-container {
+  padding-top: 10px;
+  list-style-type: none;
+  list-style: none;
+  list-style-image: none;
+  display: flex;
+  justify-content: space-around;
+}
+
+.menu-item {
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.header-row {
+  display: flex;
+  flex-direction: column-reverse;
+  padding-bottom: 75px;
+  margin: 0;
+  width: 100%;
+}
+
+
+a {
+  color: black;
+  text-decoration: none;
+  transition: all 0.3s ease 0s;
+}
+
+a:hover {
+  color: pink;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.thumbnail {
+  display: flex;
+  padding: 0;
+  background-color: #F2F3F6;
+  width: 100%;
+}
+
+.thumbnail-image-box {
+  padding: 10px;
+  width: 50%;
+}
+
+
+.thumbnail-text-box {
+  padding: 10px;
+  width: 50%;
+}
+
+
+.thumbnail-hr {
+  border-color: black;
+  width: 33%;
+  margin-left: 0;
+}
+
+.post-title, .thumbnail-title {
+  font-weight: 400;
+  hyphens: auto;
+}
+
+.thumbnail-title { font-size: 1.20rem; }
+
+.thumbnail-date, .post-date {
+  color: rgb(175, 175, 175);
+}
+
+.excerpt {
+  display: none;
+}
+
+.thumbnail-arrow {
+  position: absolute;
+  top: 80%;
+}
+
+.category-row > .post-thumbnail:nth-child(even) {
+  flex-direction: row-reverse;
+  background-color: white;
+  text-align: right;
+}
+
+.post-thumbnail:nth-child(even) .thumbnail-hr {
+  margin-right: 0;
+  margin-left: auto;
+}
+
+.post-thumbnail:nth-child(even) .thumbnail-arrow {
+  right: 52%;
+}
+
+.post-thumbnail:nth-child(odd) .thumbnail-arrow {
+  right: 2%;
+}
+
+.blog-post {padding: 15px;}
+
+.post-meta {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.post-title {font-size: 2rem;}
+
+@media (min-width:576px) /* Small, portrait tablet */ {
+
+}
+
+@media (min-width:768px) /* Medium, landscape tablet */ {
+  .menu-item {
+    padding: 0px 10px 0px 10px;
+    display: block;
+    float: right;
+  }
+}
+
+
+@media (min-width:992px) /* Large, Desktop */ {
+  .post-thumbnail::before {
+    content: "";
+    width: 1px;
+    margin-left: -1px;
+    float: left;
+    height: 0;
+    padding-top: 200%;
+  }
+  .post-thumbnail::after { /* to clear float */
+    content: "";
+    display: table;
+    clear: both;
+  }
+}
+
+/* .hidden {
+  display: none;
+} */

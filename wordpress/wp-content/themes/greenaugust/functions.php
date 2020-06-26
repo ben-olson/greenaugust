@@ -4,6 +4,7 @@ function greenaugust_scripts() {
 	wp_enqueue_style( 'bootstrap', get_template_directory_uri() . '/css/bootstrap.min.css', array(), '4.5.0', 'all' );
 	wp_enqueue_style( 'styles', get_template_directory_uri() . '/css/style.css', array(), NULL, 'all' );
 	wp_enqueue_script( 'bootstrap', get_template_directory_uri() . '/js/bootstrap.bundle.min.js', array( 'jquery' ), '4.5.0', true );
+  wp_enqueue_script('index-js', get_template_directory_uri() . '/js/index.js', array(), true);
 }
 
 function wpb_custom_new_menus() {
@@ -11,6 +12,7 @@ function wpb_custom_new_menus() {
     array(
       'headers' => __( 'Primary Headers', 'greenaugust' ),
       'nav-menu' => __( 'Navigation Bar Menu', 'greenaugust' ),
+      'social' => __( 'Social Media Links', 'greenaugust' ),
     )
   );
 }
