@@ -1,39 +1,38 @@
-<div class="thumbnail col-xs-6 col-lg-3">
-  <?php if ( has_post_thumbnail()) : ?>
-    <div class="thumbnail-image-box">
+<div class="post-thumbnail">
+  <div class="tn-img-cntnr">
+    <?php if ( has_post_thumbnail()) : ?>
+    <div class="tn-img">
       <a class="thumbnail-image" href="<?php the_permalink(); ?>" alt="<?php the_title_attribute(); ?>">
-        <?php $image_src = wp_get_attachment_image_src( get_post_thumbnail_id(),’thumbnail’ );
+        <?php $image_src = wp_get_attachment_image_src( get_post_thumbnail_id(), ’thumbnail’ );
               echo '<img width="100%" src="' . $image_src[0] . '">'; ?>
       </a>
     </div>
+    <div class="tn-meta">
+      <?php if (the_date()) {
+        the_date();
+      }
+      if (get_the_category() == false) {
+        echo ' &middot ';
+        get_the_category();
+      }
+      ?>
 
-  <?php endif; ?>
-
-  <div class="thumbnail-text-box">
-    <h2 class="thumbnail-title">
-      <a href="<?php the_permalink(); ?>" alt="<?php the_title_attribute(); ?>">
-      <?php the_title(); ?>
-      </a>
-    </h2>
-
-    <p class="thumbnail-date body-copy">
-      <?php the_date(); ?>
-    </p>
-
-    <hr class="thumbnail-hr">
-
-    <div class="excerpt body-copy">
-      <?php the_excerpt(); ?>
     </div>
-
-    <a href="<?php the_permalink(); ?>" alt"<?php the_title_attribute(); ?>">
-      <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" class="thumbnail-arrow"
-       viewBox="0 0 6.5 10.4" width="1.5rem" height="1.5rem" xml:space="preserve">
-        <polygon points="6.5,5.2 4,7.7 1.3,10.4 0,9.1 3.9,5.2 0.4,1.7 0,1.3 1.3,0 2.9,1.7 "/>
-        <polygon points="6.5,5.2 6.5,5.2 5.2,3.9 "/>
-      </svg>
-    </a>
-
+    <?php endif; ?>
   </div>
+  <div class="tn-text-cntnr">
+    <div class="tn-title"><a href="<?php the_permalink(); ?>" alt="<?php the_title_attribute(); ?>">
+    <?php the_title(); ?>
+    </a></div>
 
+    <div class="tn-excerpt">
+      <?php
+      $excerpt = get_the_excerpt();
+
+      $excerpt = substr($excerpt, 0, 100);
+      $result = substr($excerpt, 0, strrpos($excerpt, ' '));
+      echo $result;
+      ?>
+   </div>
+  </div>
 </div>

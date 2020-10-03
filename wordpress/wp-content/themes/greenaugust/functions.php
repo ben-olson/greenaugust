@@ -1,10 +1,10 @@
 <?php
 
 function greenaugust_scripts() {
-	wp_enqueue_style( 'bootstrap', get_template_directory_uri() . '/css/bootstrap.min.css', array(), '4.5.0', 'all' );
-	wp_enqueue_style( 'styles', get_template_directory_uri() . '/css/style.css', array(), NULL, 'all' );
-	wp_enqueue_script( 'bootstrap', get_template_directory_uri() . '/js/bootstrap.bundle.min.js', array( 'jquery' ), '4.5.0', true );
-  wp_enqueue_script('index-js', get_template_directory_uri() . '/js/index.js', array(), true);
+	wp_enqueue_style( 'styles', get_template_directory_uri() . '/style.css', array(), NULL, 'all' );
+  wp_enqueue_style( 'flickity-css', get_template_directory_uri() . '/flickity.css', array(), NULL, 'all' );
+  wp_enqueue_script('index-js', get_template_directory_uri() . '/index.js');
+  wp_enqueue_script('flickity', get_template_directory_uri() . '/flickity.pkgd.min.js');
 }
 
 function wpb_custom_new_menus() {
@@ -12,7 +12,8 @@ function wpb_custom_new_menus() {
     array(
       'headers' => __( 'Primary Headers', 'greenaugust' ),
       'nav-menu' => __( 'Navigation Bar Menu', 'greenaugust' ),
-      'social' => __( 'Social Media Links', 'greenaugust' ),
+      'social-media' => __( 'Social Media Links', 'greenaugust' ),
+      'footer-menu' => __( 'Footer Menu', 'greenaugust'),
     )
   );
 }
@@ -31,6 +32,81 @@ function wpb_get_menu_items($location_id){
         return $menu_items;
     }
 }
+
+/**
+ * Filter the except length to 20 words.
+ *
+ * @param int $length Excerpt length.
+ * @return int (Maybe) modified excerpt length.
+ */
+function wpdocs_custom_excerpt_length( $length ) {
+    return 300;
+}
+
+function bac_wp_strip_header_tags_only( $excerpt ) {
+
+    $regex = '#(<h([1-6])[^>]*>)\s?(.*)?\s?(<\/h\2>)#';
+    $excerpt = preg_replace($regex,'', $excerpt);
+    return $excerpt;
+}
+
+function bac_wp_strip_header_tags_keep_other_formatting( $text ) {
+
+  $raw_excerpt = $text;
+
+  if ( '' == $text ) {
+  //Retrieve the post content.
+  $text = get_the_content('');
+  //remove shortcode tags from the given content.
+  $text = strip_shortcodes( $text );
+  $text = apply_filters('the_content', $text);
+  $text = str_replace(']]>', ']]&gt;', $text);
+
+  //Regular expression that removes the h1-h6 tags with their content.
+  $regex = '#(<h([1-6])[^>]*>)\s?(.*)?\s?(<\/h\2>)#';
+  $text = preg_replace($regex,'', $text);
+
+  /***Add the allowed HTML tags separated by a comma.
+  h1-h6 header tags are NOT allowed. DO NOT add h1,h2,h3,h4,h5,h6 tags here.***/
+  $allowed_tags = '<p>,<a>,<strong>';  //I added p, em, and strong tags.
+  $text = strip_tags($text, $allowed_tags);
+
+  /***Change the excerpt word count.***/
+  $excerpt_word_count = 55; //This is WP default.
+  $excerpt_length = apply_filters('excerpt_length', $excerpt_word_count);
+
+  /*** Change the excerpt ending.***/
+  $excerpt_end = '[...]'; //This is the WP default.
+  $excerpt_more = apply_filters('excerpt_more', ' ' . $excerpt_end);
+
+  $words = preg_split("/[\n\r\t ]+/", $text, $excerpt_length + 1, PREG_SPLIT_NO_EMPTY);
+      if ( count($words) > $excerpt_length ) {
+          array_pop($words);
+          $text = implode(' ', $words);
+          $text = $text . $excerpt_more;
+      } else {
+          $text = implode(' ', $words);
+      }
+  }
+  return apply_filters('wp_trim_excerpt', $text, $raw_excerpt);
+}
+
+
+
+/**
+ * Filter the excerpt "read more" string.
+ *
+ * @param string $more "Read more" excerpt string.
+ * @return string (Maybe) modified "read more" excerpt string.
+ */
+function wpdocs_excerpt_more( $more ) {
+    return '...';
+}
+
+// add_filter( 'excerpt_more', 'wpdocs_excerpt_more' );
+add_filter( 'excerpt_length', 'wpdocs_custom_excerpt_length', 999 );
+// add_filter( 'get_the_excerpt', 'bac_wp_strip_header_tags_keep_other_formatting', 5);
+
 
 
 // Add Google Fonts

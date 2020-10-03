@@ -4,7 +4,7 @@
 get_header(); ?>
 
 
-<div class="container-fluid thumbnail-body p-0 index justify-content-center">
+<div class="container-fluid body p-0 justify-content-center">
 
 <?php
 
@@ -22,7 +22,7 @@ if (have_posts()) :
   <!-- Displays the category/tag as the header -->
   <div class="category-header">
     <a href="<?php echo esc_url(get_category_link($category->term_id)); ?>">
-          <?php echo ucfirst((string)get_the_archive_title()); ?></a>
+          <?php echo strtoupper(get_the_archive_title()); ?></a>
   </div>
 
     <div class="category-row">

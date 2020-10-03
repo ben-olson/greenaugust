@@ -1,0 +1,305 @@
+/*
+ * Ben Olson
+ * Project: Green August Static Demo (No CMS Implementation)
+ * Description: This is a test project for Green August. It features a bulk of the website's final * visualization without PhP or Wordpress functionality. To be used for demonstration and modeling * purposes only.
+ */
+
+/* SECTION 1: Fonts and Document Settings */
+
+/* Lato Font Family */
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
+
+/* Lora Font Family */
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap');
+
+/* Faustina Font Family */
+@import url('https://fonts.googleapis.com/css2?family=Faustina:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap');
+
+/* Knockout Font */
+@font-face {
+  font-family: "Knockout";
+  src: url('knockout.otf');
+}
+
+.tn-excerpt, .tn-meta, .body-copy {
+  font-family: "Faustina", sans-serif;
+}
+
+.post-title, .tn-title, .site-description, h2, h3, h4 {
+  font-family: "Lora", sans-serif;
+}
+
+.has-drop-cap:not(:focus):first-letter {font-weight: 400;}
+
+.site-title, .heading, .menu-item, .copyright, .btn, #search-btn, .hr-text, .post-author {
+  font-family: "Knockout", monospace;
+  font-weight: 300;
+  text-transform: uppercase;
+}
+
+.menu {
+  line-height: 2rem;
+  list-style: none;
+  list-style-type: none;
+  display: inline-flex;
+  padding: 0;
+  margin: 0 15px 0 0;
+}
+
+.heading {font-size: 2.5rem;}
+.category-heading {display: flex;}
+.btn, .hr-text, .menu-item, .copyright, .post-author {font-size: 1.5rem;}
+
+html {
+  font-size: 12px;
+  scroll-behavior: smooth;
+}
+
+body > * {padding: 0 5vw;}
+
+/* SECTION 2: Header */
+
+@media (min-width:1224px) {
+  .site-wrapper, .nav-bar, .menu-navigation-menu-container {display: flex;}
+  .header-menu, .menu-navigation-menu-container {flex-direction: column;}
+  .header {
+    position: fixed;
+    width: 20%;
+    height: auto;
+    top: 0;
+    left: 5vw;
+    z-index: 1;
+    overflow: hidden;
+  }
+  .body-wrapper {
+    margin-left: calc(20% + 5vw);
+    padding-left: 5vw;
+    width: 100%;
+    border-left: solid black 3px;
+  }
+  .tn-excerpt .has-drop-cap:not(:focus):first-letter {
+    margin-top: -5px;
+  }
+
+}
+
+.header {
+  padding-top: 20px;
+}
+.header-wrapper, .footer-wrapper {display: flex;}
+.header-menu .btn, .footer-menu .btn {margin-right: 10px;}
+
+#top-btn {
+  margin-left: auto;
+  margin-right: 0;
+  width: 20%;
+  text-align: right;
+  align-self: center;
+}
+
+/* SECTION 2: Footer */
+
+
+/* SECTION 2: Thumbnail */
+
+.tn-title {
+  line-height: 1.1em;
+  font-weight: 700;
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+.tn-meta {color: gray;}
+.tn-img > img {width: 100%;}
+.tn-img {
+  width: 120px;
+  margin-right: 15px;
+}
+.tn-excerpt {margin: 10px 0;}
+
+.feature-tn-title {
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+.feature-tn-img {
+  width: 100%;
+  margin: 10px 0;
+}
+.feature-tn-excerpt {margin-bottom: 20px;}
+.feature-tn-meta, .feature-tn-excerpt {font-size: 1.15rem;}
+
+
+.post-thumbnail {
+  display: flex;
+  margin: 20px 15px 15px 0;
+}
+
+.tn-img-cntnr .tn-meta {display: none;}
+
+/* SECTION 3: Home Page */
+
+#titles {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 15vh 0 50vh 0;
+  width: 250px;
+}
+
+.site-title {font-size: 4rem;}
+.site-description {font-size: 2rem;}
+
+.feature, .lower-section {min-height: 100vh;}
+
+.hr-text > span {
+  background-color: white;
+  position: relative;
+  top: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  padding: 0 10px;
+  display: inline-block;
+}
+
+.category-row {
+  display: flex;
+  flex-wrap: wrap;
+  overflow-y: hidden;
+  width: 100%;
+}
+
+@media (min-width: 600px) {
+  body > * {padding: 0 10vw;}
+  .upper-section {
+    padding-top: 3vh;
+    height: 100%;
+  }
+  #titles {
+    padding: 0 0 5vh 0;;
+    display: block;
+  }
+  .feature-wrapper {
+    display: flex;
+  }
+  .feature-wrapper-text {
+    margin: 0 40px 10px 0;
+    width: 50%;
+  }
+  .feature-tn-img {
+    margin-top: -40px;
+    width: 50%;
+
+  }
+  .feature-tn-title {font-size: 3rem;}
+  .feature-tn-meta, .feature-tn-excerpt {font-size: 1.25rem;}
+  .feature, .lower-section {min-height: auto;}
+
+  .post-thumbnail {
+    display: inline-block;
+    width: 20%;
+    margin-right: 5%;
+  }
+  .tn-img-cntnr {
+    position: relative;
+  }
+  .tn-img-cntnr .tn-meta {
+    display: block;
+    transform: rotateZ(90deg);
+    transform-origin: right;
+    position: relative;
+    left: 10px;
+    bottom: 11px;
+    height: 1.25rem;
+    overflow-y: hidden;
+
+  }
+  .feature .hr-text {
+    background: rgb(255,255,255);
+    background: -webkit-linear-gradient(bottom, rgba(255,255,255,1) 70%, rgba(255,255,255,0) 100%);
+    background: -o-linear-gradient(bottom, rgba(255,255,255,1) 70%, rgba(255,255,255,0) 100%);
+    background: linear-gradient(to top, rgba(255,255,255,1) 70%, rgba(255,255,255,0) 100%);
+  }
+  .post-thumbnail .tn-img, .carousel-cell {
+    width: 100%;
+  }
+}
+@media (min-width:1224px) {
+  body {min-height: 100vh;}
+  body > * {padding: 0 5vw;}
+  .upper-section {
+    display: flex;
+    justify-content: space-between;
+    height: 100%;
+  }
+  #titles {padding: 0;}
+  .feature-wrapper-text {
+    height: 100%;
+    overflow-y: scroll;
+  }
+  .post-thumbnail {
+    width: 17%;
+    margin-right: 3%;
+  }
+  .feature .hr-text {
+    width: 47%;
+    position: relative;
+    bottom: 40px;
+    padding-top: 10px;
+  }
+}
+
+
+/* SECTION 4: Post Page */
+
+.blog-post {
+  width: 60%;
+  margin: auto auto;
+}
+
+.post-title {
+  font-size: 5rem;
+  line-height: 1em;
+  margin: 30px -30%;
+  text-align: center;
+}
+
+.post-author {display: flex;}
+
+.avatar {margin: 2px 5px 3px 0;}
+
+.avatar img {clip-path: circle(50% at 50% 50%);}
+
+.post-body-copy {
+  font-size: 1.4rem;
+  line-height: 1.4em;
+  font-weight: 400;
+}
+
+/* SECTION 5: Category Page */
+
+/* SECTION 6: Misc */
+
+.hidden, .flickity-page-dots {display: none;}
+
+.menu-navigation-menu-container, .menu-social-media-container, .menu-footer-buttons-container {
+  display: flex;
+  list-style: none;
+}
+
+.menu-navigation-menu-container > *, .menu-social-media-container > *, .menu-footer-buttons-container > * {
+  margin-right: 15px;
+}
+
+.menu-social-media-container > .menu-item {
+  margin: 4px 10px 4px 0;
+}
+
+.menu-social-media-container img {
+  width: 22px;
+  height: 22px;
+}
+
+
+.post-attr .menu-social-media-container img {
+  filter: opacity(50%);
+}
