@@ -2,18 +2,14 @@
   <div class="tn-img-cntnr">
     <?php if ( has_post_thumbnail()) : ?>
     <div class="tn-img">
-      <a class="thumbnail-image" href="<?php the_permalink(); ?>" alt="<?php the_title_attribute(); ?>">
-        <?php $image_src = wp_get_attachment_image_src( get_post_thumbnail_id(), ’thumbnail’ );
-              echo '<img width="100%" src="' . $image_src[0] . '">'; ?>
-      </a>
+      <?php echo get_the_image_permalink($post->ID); ?>
     </div>
     <div class="tn-meta">
-      <?php if (the_date()) {
-        the_date();
-      }
-      if (get_the_category() == false) {
-        echo ' &middot ';
-        get_the_category();
+      <?php
+      echo get_the_date();
+      $categories = get_the_category();
+      if ( !empty( $categories ) ) {
+        echo ' &middot; ' . esc_html( $categories[0]->name );
       }
       ?>
 
@@ -21,9 +17,9 @@
     <?php endif; ?>
   </div>
   <div class="tn-text-cntnr">
-    <div class="tn-title"><a href="<?php the_permalink(); ?>" alt="<?php the_title_attribute(); ?>">
-    <?php the_title(); ?>
-    </a></div>
+    <div class="tn-title">
+      <?php echo get_the_permalink2($post->ID); ?>
+    </div>
 
     <div class="tn-excerpt">
       <?php

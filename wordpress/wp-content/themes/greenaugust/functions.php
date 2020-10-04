@@ -33,6 +33,56 @@ function wpb_get_menu_items($location_id){
     }
 }
 
+function get_the_permalink2($post_id) {
+
+  $href = get_post_meta($post_id, 'Published Article Link', true);
+  $target = "_blank";
+  $tab = "external";
+  $rel = "noopener";
+  if (empty($href)) {
+    $href = get_permalink($post_id);
+    $target = "_self";
+    $tab = "internal";
+  }
+  $title = get_the_title($post_id);
+  $alt = get_the_title($post_id);
+  return "<a href=" . $href . " target="
+    . $target . "&quot; rel=" . $rel . ">" . $title . "</a>";
+}
+
+function get_the_image_permalink($post_id) {
+
+  $href = get_post_meta($post_id, 'Published Article Link', true);
+  $target = "_blank";
+  $tab = "external";
+  $rel = "noopener";
+  if (empty($href)) {
+    $href = get_permalink($post_id);
+    $target = "_self";
+    $tab = "internal";
+  }
+  $title = get_the_title($post_id);
+  $alt = get_the_title($post_id);
+  $src = wp_get_attachment_image_src( get_post_thumbnail_id($post_id), ’thumbnail’ );
+  return "<a class='thumbnail-image' href='" . $href . "' target='"
+    . $target . "' rel='" . $rel . "'><img width='100%' src='" . $src[0] . "' alt='"
+      . $title . "'></a>";
+
+}
+
+function show_last_modified_date() {
+  $original_time = get_the_time('U');
+  console.log($original_time);
+  $modified_time = get_the_modified_time('U');
+  if ($modified_time >= $original_time + 86400) {
+    $updated_time = get_the_modified_time('h:i a');
+    $updated_day = get_the_modified_time('F jS, Y');
+    $modified_content .= '<div class="modified-date body-copy">Last updated on '. $updated_day . '</div>';
+  }
+  console.log($modified_content);
+  return $modified_content;
+}
+
 /**
  * Filter the except length to 20 words.
  *
@@ -105,9 +155,8 @@ function wpdocs_excerpt_more( $more ) {
 
 // add_filter( 'excerpt_more', 'wpdocs_excerpt_more' );
 add_filter( 'excerpt_length', 'wpdocs_custom_excerpt_length', 999 );
+add_filter( 'get_the_modified_date', 'show_last_modified_date' );
 // add_filter( 'get_the_excerpt', 'bac_wp_strip_header_tags_keep_other_formatting', 5);
-
-
 
 // Add Google Fonts
 function startwordpress_google_fonts() {

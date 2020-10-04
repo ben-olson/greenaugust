@@ -9,14 +9,13 @@
           'items_wrap' => '%3$s',
           'menu_class' => 'icons'
         )); ?> -->
+        <div class="copyright">&copy; Brooke Kaufman 2020</div>
+        <br>
         <?php wp_nav_menu( array(
           'theme_location' => 'footer-menu',
           'items_wrap' => '%3$s',
           'menu_class' => 'footer-btns'
         )); ?>
-        <div class="copyright">
-          &copy; Brooke Kaufman 2020
-        </div>
         <div class="btn" id="top-btn"><a href="#top">Top</a></div>
       </div>
 

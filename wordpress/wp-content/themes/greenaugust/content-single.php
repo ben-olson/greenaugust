@@ -4,7 +4,7 @@
 
     <div class="post-attr-cntnr">
       <h2 class="post-title"><?php the_title(); ?></h2>
-      <div class="post-author">
+      <!-- <div class="post-author">
         <div class="avatar">
           <?php echo get_avatar( get_the_author_meta('ID'), '70');  ?>
         </div>
@@ -16,15 +16,14 @@
             'menu_class' => 'icons'
           )); ?>
         </div>
+      </div> -->
+      <div class="dates">
+        <div class="post-date body-copy">Published on <?php the_date(); ?></div>
+        <?php echo show_last_modified_date(); ?>
       </div>
-      <p class="post-date body-copy"><?php the_date(); ?>
-      </p>
     </div>
 
-    <div class="post-feature-image">
-      <?php $image_src = wp_get_attachment_image_src( get_post_thumbnail_id(),’thumbnail’ );
-      echo '<img width="100%" src="' . $image_src[0] . '">'; ?>
-    </div>
+
 
   </div>
 

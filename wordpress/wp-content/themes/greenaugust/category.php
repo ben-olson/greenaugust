@@ -4,7 +4,7 @@
 get_header(); ?>
 
 
-<div class="container-fluid body p-0 justify-content-center">
+<div class="categories">
 
 <?php
 
@@ -21,11 +21,11 @@ if (have_posts()) :
 ?>
   <!-- Displays the category/tag as the header -->
   <div class="category-header">
-    <a href="<?php echo esc_url(get_category_link($category->term_id)); ?>">
-          <?php echo strtoupper(get_the_archive_title()); ?></a>
+    <?php echo get_the_archive_title(); ?>
+    <!-- <a href="<?php echo esc_url(get_category_link($category->term_id)); ?>"></a> -->
   </div>
 
-    <div class="category-row">
+    <div class="category-posts">
 
     <?php while ($query->have_posts()) {
       $query->the_post();

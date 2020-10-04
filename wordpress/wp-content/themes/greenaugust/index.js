@@ -68,7 +68,7 @@ let mQuery;
     let categories = qsa(className);
     if (mQuery == 1) {
       for (var i = 0; i < categories.length; i++) {
-        if (categories[i].children.length > 4) {
+        if (categories[i].children.length > 3) {
           categories[i].lastElementChild.classList.add("hidden");
         }
       }

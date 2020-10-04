@@ -8,8 +8,10 @@
   endwhile; endif;
 ?>
 
+<?php get_template_part( 'content', 'postcarousel' ); ?>
+
 </div>
 
-<?php get_template_part( 'content', 'postcarousel' ); ?>
+
 
 <?php get_footer(); ?>
