@@ -26,6 +26,7 @@ let mQuery;
    * adds event listeners to certain user inputs
    */
   function init() {
+    initSubMenu();
     handleMediaChange();
     for (let i = 0; i < MQUERIES.length; i++) {
       MQUERIES[i].addListener(handleMediaChange);
@@ -54,6 +55,40 @@ let mQuery;
       }
     }
   }
+
+  function initSubMenu() {
+    let menus = Array.from(qsa('.sub-menu'));
+    for (let i = 0; i < menus.length; i++) {
+      let menu = menus[i];
+      menu.parentNode.addEventListener('mouseover', function() {
+        openSubMenu(menu);
+      });
+      menu.parentNode.addEventListener('mouseout', function() {
+        closeSubMenu(menu);
+      });
+      menu.addEventListener('mouseout', function() {
+        closeSubMenu(menu);
+      });
+      let children = Array.from(menu.children);
+      for (let j = 0; j < children.length; j++) {
+        children[j].classList.add('hidden');
+      }
+    }
+  }
+
+  function openSubMenu(menu) {
+    let children = Array.from(menu.children);
+    for (let i = 0; i < children.length; i++) {
+      children[i].classList.remove('hidden');
+    }
+  }
+
+  function closeSubMenu(menu) {
+    let children = Array.from(menu.children);
+    for (let i = 0; i < children.length; i++) {
+      children[i].classList.add('hidden');
+    }
+  }
  
   function handleMediaChange() {
     for (let i = 0; i < MQUERIES.length; i++) {
@@ -70,11 +105,13 @@ let mQuery;
       for (var i = 0; i < categories.length; i++) {
         if (categories[i].children.length > 3) {
           categories[i].lastElementChild.classList.add("hidden");
+          categories[i].lastElementChild.previousElementSibling.classList.add("hidden");
         }
       }
     } else {
       for (var i = 0; i < categories.length; i++) {
         categories[i].lastElementChild.classList.remove("hidden");
+        categories[i].lastElementChild.previousElementSibling.classList.remove("hidden");
       }
     }
   }

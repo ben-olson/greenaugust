@@ -7,13 +7,13 @@
     // Determines if the menu term is a category or tag
     if (term_exists($item->title, 'post_tag')) {
       $args = array(
-        'posts_per_page' => 4,
+        'posts_per_page' => 5,
         'tag_id' => $item->object_id
       );
 
     } elseif (term_exists($item->title, 'category')) {
       $args = array(
-        'posts_per_page' => 4,
+        'posts_per_page' => 5,
         'cat' => $item->object_id
       );
     }
@@ -32,7 +32,7 @@
     $query = new WP_Query($args);
     while ($query->have_posts()) {
       $query->the_post();
-      get_template_part( 'content', 'thumbnail' );
+      get_template_part( 'blocks/content', 'thumbnail' );
     }
     unset($args);
     ?>

@@ -2,7 +2,7 @@
 * A Simple Category Template
 */
 get_header(); ?>
-
+<?php get_template_part('templates/template', 'header'); ?>
 
 <div class="categories">
 
@@ -22,14 +22,13 @@ if (have_posts()) :
   <!-- Displays the category/tag as the header -->
   <div class="category-header">
     <?php echo get_the_archive_title(); ?>
-    <!-- <a href="<?php echo esc_url(get_category_link($category->term_id)); ?>"></a> -->
   </div>
 
     <div class="category-posts">
 
     <?php while ($query->have_posts()) {
       $query->the_post();
-      get_template_part( 'content', 'thumbnail' );
+      get_template_part( 'blocks/content', 'thumbnail' );
     }
     unset($query);
     ?>
@@ -43,10 +42,8 @@ if (have_posts()) :
 
   <?php endif; ?>
 
-
-
 </div>
 
 <?php endif; ?>
-
+<?php get_template_part('templates/template', 'footer'); ?>
 <?php get_footer(); ?>

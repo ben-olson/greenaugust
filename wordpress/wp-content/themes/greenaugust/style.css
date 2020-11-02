@@ -1,7 +1,18 @@
-/*
- * Ben Olson
- * Project: Green August Static Demo (No CMS Implementation)
- * Description: This is a test project for Green August. It features a bulk of the website's final * visualization without PhP or Wordpress functionality. To be used for demonstration and modeling * purposes only.
+ /*
+ Theme Name: Green August
+ Theme URI: https://wordpress.org/themes/greenaugust/
+ Author: Ben Olson
+ Author URI: https://www.ben-olson.com
+ Description: This is a simple Wordpress theme that focuses on minimalist features of text. It is designed for more formal blog-types and features heavily on thumbnail imagery. This theme is adapted for all screen sizes.
+ Version: 1.0
+ License: GNU General Public License v2 or later
+ License URI: http://www.gnu.org/licenses/gpl-2.0.html
+ Text Domain: greenaugust
+ Tags: simple, hidden-menus, formal, elegant, thumbnail, gallery, post-gallery, serif, bold, blog, portfolio
+
+ This theme, like WordPress, is licensed under the GPL.
+ Use it to make something cool, have fun, and share what you've learned with others.
+
  */
 
 /* SECTION 1: Fonts and Document Settings */
@@ -37,7 +48,7 @@
   font-size: 7rem;
 }
 
-.site-title, .heading, .menu-item, .copyright, .btn, #search-btn, .hr-text, .post-author {
+.site-title, .heading, .menu-item, .copyright, .btn, #search-btn, .hr-text, .post-author, .wp-block-button {
   font-family: "Knockout", monospace;
   font-weight: 300;
   text-transform: uppercase;
@@ -49,13 +60,31 @@
 a {
   text-decoration: none;
   color: black;
-  transition: 0.3s ease;
 }
 
+a, .to-top-btn {transition: 0.3s ease;}
+
 a:hover {color: pink;}
+.top-svg:hover {}
 
 figcaption {text-align: center;}
 
+.wp-block-button {
+  background-color: rgba(255, 255, 255, 0);
+  background-color: white;
+  color: black;
+}
+
+.wp-block-button__link {
+  background-color: inherit;
+  border: unset!important;
+}
+
+.is-style-outline {
+  color: white;
+  background-color: black;
+  border-radius: 28px;
+}
 
 .menu {
   line-height: 2rem;
@@ -66,7 +95,15 @@ figcaption {text-align: center;}
   margin: 0 15px 0 0;
 }
 
-.heading {font-size: 2.5rem;}
+@media (min-width: 1224px) {
+  .home, .page {
+    width: 70%;
+  }
+}
+
+.site-wrapper {min-height: 100vh;}
+
+.heading {font-size: 4rem;}
 .category-heading {display: flex;}
 .btn, .hr-text, .menu-item, .copyright, .post-author {font-size: 1.5rem;}
 
@@ -75,44 +112,42 @@ html {
   scroll-behavior: smooth;
 }
 
-body > * {padding: 0 5vw;}
+body > * {padding: 0 10vw;}
 
 /* SECTION 2: Header */
 
-@media (min-width:1224px) {
+@media (min-width:600px) {
 
-  /* .header-menu, .menu-navigation-menu-container {flex-direction: column;}
-  .header {
-    position: fixed;
-    width: 20%;
-    height: auto;
-    top: 0;
-    left: 5vw;
-    z-index: 1;
-    overflow: hidden;
-  }
-  .body-wrapper {
-    margin-left: calc(20% + 5vw);
-    padding-left: 5vw;
+  .header-menu .sub-menu {
+    display: flex;
+    position: absolute;
+    padding: 0;
+    padding-top: 1em;
+    margin-top: 0;
     width: 100%;
-    border-left: solid black 3px;
-  } */
+    margin-left: -20px;
+  }
 }
 
 .site-title, .site-description {margin: 10px 0;}
+.site-title {line-height: 0.8em;}
 .nav-bar, .menu-navigation-menu-container {
   display: flex;
   justify-content: center;
+  height: 2rem;
 }
 
-.menu-item {padding: 0 10px;}
+.header-menu .sub-menu {
+  list-style: none;
+}
+
+.menu-item {margin: 0 20px;}
 
 .header {
-  margin: 20px 0 10vh 0;
+  margin: 40px 0 10vh 0;
 }
 .header-wrapper, .footer-wrapper {display: flex;}
 .header-menu .btn, .footer-menu .btn {margin-right: 10px;}
-
 
 /* SECTION 2: Footer */
 
@@ -122,11 +157,29 @@ body > * {padding: 0 5vw;}
   margin: auto auto;
   align-items: center;
 }
-.footer {margin: 70px 0;}
+.footer {margin-top: 70px;}
 .menu-footer-buttons-container {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+#top-btn a {
+  height: 100px;
+  display: flex;
+  -ms-align-items: flex-end;
+  align-items: flex-end;
+}
+.to-top-btn {
+  width: 30px;
+  transform: rotateZ(90deg);
+  fill: rgba(0, 0, 0, 0.25);
+}
+
+.to-top-btn:hover {
+  fill: pink;
+  -ms-align-items: flex-start;
+  align-items: flex-start;
 }
 
 
@@ -138,7 +191,7 @@ body > * {padding: 0 5vw;}
   font-size: 1.5rem;
   margin-bottom: 10px;
 }
-.tn-meta {color: gray;}
+.tn-meta, .read-more {color: gray;}
 .tn-img > img {width: 100%;}
 .tn-img {
   width: 120px;
@@ -167,9 +220,16 @@ body > * {padding: 0 5vw;}
 
 /* SECTION 3: Home Page */
 
-.home {
-  width: 70%;
+.launch-page {
+  padding: 25vh 0;
+}
+
+.home, .page {
   margin: auto auto;
+}
+
+.home > * {
+  margin-bottom: 7vh;
 }
 
 #titles {
@@ -183,7 +243,7 @@ body > * {padding: 0 5vw;}
 .site-title {font-size: 4rem;}
 .site-description {font-size: 2rem;}
 
-.feature, .lower-section {min-height: 100vh;}
+.feature, .home-carousel {min-height: 100vh;}
 
 .hr-text > span {
   background-color: white;
@@ -203,8 +263,11 @@ body > * {padding: 0 5vw;}
   width: 100%;
 }
 
+.home-about .wp-block-pullquote {
+  padding: 0.5rem 0;
+}
+
 @media (min-width: 600px) {
-  body > * {padding: 0 10vw;}
   .upper-section {
     padding-top: 3vh;
     height: 100%;
@@ -218,16 +281,16 @@ body > * {padding: 0 5vw;}
   }
   .feature-wrapper-text {
     margin: 0 40px 10px 0;
-    width: 50%;
+    width: 60%;
   }
   .feature-tn-img {
-    margin-top: -40px;
-    width: 50%;
-
+    margin-top: -5rem;
+    height: inherit;
+    width: 40%;
   }
   .feature-tn-title {font-size: 3rem;}
-  .feature-tn-meta, .feature-tn-excerpt {font-size: 1.25rem;}
-  .feature, .lower-section {min-height: auto;}
+  .feature-tn-meta {font-size: 1.25rem;}
+  .feature, .home-carousel {min-height: auto;}
 
   .post-thumbnail {
     display: inline-block;
@@ -314,8 +377,8 @@ body > * {padding: 0 5vw;}
 
 .avatar img {clip-path: circle(50% at 50% 50%);}
 
-.post-body-copy {
-  font-size: 1.4rem;
+.post-body-copy, .feature-tn-excerpt {
+  font-size: 1.5rem;
   line-height: 1.4em;
   font-weight: 400;
 }
@@ -343,6 +406,11 @@ body > * {padding: 0 5vw;}
 /* SECTION 6: Misc */
 
 .hidden, .flickity-page-dots {display: none;}
+.msg-404 {text-align: center;}
+.archive {
+  display: flex;
+  flex-wrap: wrap;
+}
 
 .menu-navigation-menu-container, .menu-social-media-container, .menu-footer-buttons-container {
   display: flex;

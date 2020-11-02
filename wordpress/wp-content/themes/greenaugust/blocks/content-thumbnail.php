@@ -18,7 +18,7 @@
   </div>
   <div class="tn-text-cntnr">
     <div class="tn-title">
-      <?php echo get_the_permalink2($post->ID); ?>
+      <?php echo get_the_title_permalink($post->ID); ?>
     </div>
 
     <div class="tn-excerpt">
