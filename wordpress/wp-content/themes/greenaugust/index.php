@@ -1,1 +1,1 @@
-<?php get_template_part( 'pages/page', 'about' ); ?>
+<?php get_template_part( 'pages/page', 'home' ); ?>

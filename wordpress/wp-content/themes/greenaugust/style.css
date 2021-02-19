@@ -28,8 +28,8 @@
 
 /* Knockout Font */
 @font-face {
-  font-family: "Knockout";
-  src: url('knockout.otf');
+  font-family: 'Knockout';
+  src: url('knockout.otf') format('opentype');
 }
 
 /* * {border: 1px solid red;} */

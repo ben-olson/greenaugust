@@ -1,0 +1,352 @@
+/*
+Theme Name: Green August V2
+Theme URI: https://wordpress.org/themes/greenaugust/
+Author: Ben Olson
+Author URI: https://www.ben-olson.com
+Description: This is a simple Wordpress theme that focuses on minimalist features of text. It is designed for more formal blog-types and features heavily on thumbnail imagery. This theme is adapted for all screen sizes.
+Version: 1.0
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: greenaugust-v2
+Tags: simple, hidden-menus, formal, elegant, thumbnail, gallery, post-gallery, serif, bold, blog, portfolio
+
+This theme, like WordPress, is licensed under the GPL.
+Use it to make something cool, have fun, and share what you've learned with others.
+
+*/
+
+
+:root {
+  --ratio: 1.25;
+  --s-5: calc(var(--s-4) / var(--ratio));
+  --s-4: calc(var(--s-3) / var(--ratio));
+  --s-3: calc(var(--s-2) / var(--ratio));
+  --s-2: calc(var(--s-1) / var(--ratio));
+  --s-1: calc(var(--s0) / var(--ratio));
+  --s0: 1rem;
+  --s1: calc(var(--s0) * var(--ratio));
+  --s2: calc(var(--s1) * var(--ratio));
+  --s3: calc(var(--s2) * var(--ratio));
+  --s4: calc(var(--s3) * var(--ratio));
+  --s5: calc(var(--s4) * var(--ratio));
+  --pad: 5vw;
+  --blue: blue;
+  --sage: #F3F2E9;
+  --cover-image: red;
+}
+
+* {
+  font-family: "Helvetica Neue", Helvetica, sans-serif;
+  font-weight: 300;
+  line-height: 1.4;
+  box-sizing: border-box;
+  margin: 0;
+  outline: none;
+  transition: 0.3s all ease;
+  color: var(--black);
+  background-color: none;
+  &::before, &::after {
+    box-sizing: inherit;
+  }
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+strong,
+.bold {
+  font-weight: 800;
+}
+
+/* mobile */
+html {
+  font-size: 14px;
+}
+.title {
+  font-size: 3rem;
+}
+.splash {
+  display: flex;
+  flex-direction: column;
+  &__image {
+    width: 80vw;
+    margin: 2rem auto;
+  }
+}
+/* tablet */
+@media only screen and (min-width: 480px) {
+  html {
+      font-size: 16px;
+  }
+  .title {
+    font-size: 4rem;
+  }
+}
+/* desktop */
+@media only screen and (min-width: 768px) {
+  html {
+      font-size: 18px;
+  }
+  .title {
+    font-size: 5rem;
+  }
+}
+/* extra large */
+@media only screen and (min-width: 1024px) {
+  html {
+      font-size: 20px;
+  }
+  .splash {
+    flex-direction: row;
+    &__text {
+      width: 50%;
+      margin-right: 5rem;
+    }
+    &__image {
+      width: 100%;
+      margin: auto auto 0 auto;
+    }
+  }
+}
+
+@mixin padding($values...) {    
+  @each $var in $values {
+      padding: #{$var};
+  }
+}
+
+@mixin margin($values...) {    
+  @each $var in $values {
+      margin: #{$var};
+  }
+}
+
+@mixin weight($weight) {
+  font-weight: $weight;
+}
+
+@mixin flex($column: false) {
+  display: flex;
+  @if ($column) {
+    flex-direction: column;
+  }
+}
+
+html {
+  background-color: var(--sage);
+}
+
+.site-wrapper {
+  background-color: var(--sage);
+  max-width: 1880px;
+  @include padding(0 5vw 3vw 5vw);
+  @include margin(auto auto);
+}
+
+.flex {@include flex;}
+.flex\:column {@include flex(true);}
+
+.font\:light {@include weight(300);}
+.font\:regular {@include weight(500);}
+.font\:bold {@include weight(800);}
+
+.upper {
+  text-transform: uppercase;
+}
+
+.clip {
+  overflow: hidden;
+}
+
+
+.invert {
+  mix-blend-mode: exclusion !important;
+  filter: invert(1) !important;
+}
+
+.flow > * + * {
+  margin-top: var(--s0);
+}
+
+.flow\:tight > * + * {
+  margin-top: var(--s-3);
+}
+
+.flow\:wide > * + * {
+  margin-top: var(--s3);
+}
+
+.font-size\:s-1 {font-size: var(--s-1);}
+.font-size\:s1 {font-size: var(--s1);}
+.font-size\:s2 {font-size: var(--s2);}
+.font-size\:s3 {font-size: var(--s3);}
+.font-size\:s4 {font-size: var(--s4);}
+.font-size\:s5 {font-size: var(--s5);}
+
+.bold, strong {
+  font-weight: 500;
+}
+
+.ul * {
+  list-style: none;
+}
+
+hr {
+  border: 0.5px solid black;
+}
+
+blockquote {
+  padding: 0 2rem;
+  border-left: solid 1px black;
+  border-right: solid 1px black;
+  & p {
+    margin-bottom: 1rem;
+  }
+}
+
+.header {
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-bottom: 5rem;
+}
+
+.splash {
+  margin-top: 5rem;
+  margin-bottom: 3rem;
+  &__text {
+    @include flex(true);
+    justify-content: space-between;
+    position: relative;
+  }
+  & img {
+    width: 100%;
+    border-top-right-radius: 25%;
+  }
+}
+
+.intro {
+  max-width: 70ch;
+}
+
+.title {
+  letter-spacing: -0.05rem;
+  font-size: 5rem;
+  width: 80vw;
+  line-height: 1.05;
+  margin-bottom: 1rem;
+  // position: relative;
+  // right: -10vw;
+  // top: -5vw;
+}
+
+.site-title * {
+  text-decoration: none;
+  letter-spacing: -0.1rem;
+}
+
+.pcon {
+  @include margin(0 0 3rem 0);
+  &__month {
+    @include margin(-0.35rem var(--s3) 0 0);
+    width: 3em;
+    text-align: end;
+  }
+
+  &__posts {
+    width: 100%;
+    &__post {
+      &:hover {
+        padding-left: 30px;
+      }
+    }
+  }
+}
+
+.post-link {  
+  color: #000;
+  padding-left: 0;
+  transition: all 0.5s ease 0s;
+  & * {
+    text-decoration: none;
+  }
+  & a {
+    font-weight: 200; 
+  }
+}
+
+.link {
+  text-decoration: none;
+  color: var(--blue);
+  position: relative;
+  &:hover {
+    cursor: pointer;
+    &::after {
+      width: 100%;
+    }
+  }
+  &::after {
+    background: none repeat scroll 0 0 transparent;
+    bottom: 0;
+    content: "";
+    display: block;
+    height: 2px;
+    position: absolute;
+    background-color: var(--blue);
+    transition: width 0.3s ease 0s, left 0.3s ease 0s;
+    width: 0;
+  }
+  &_inactive {
+    color: rgba(0, 0, 0, 0.24);
+    cursor: not-allowed;
+  }
+}
+
+.post {
+
+  &__feature-img {
+    width: 100%;
+    height: unquote("min(50vw, 750px)");
+    object-fit: cover;
+    object-position: 50% 50%;
+  }
+  &__body {
+    max-width: 1200px;
+    @include margin(5rem auto);
+    @include padding(5rem 0);
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+  }
+
+}
+
+.post {
+  &__prev {
+    &:hover {
+      margin-left: -30px;
+    }
+  }
+  &__next {
+    &:hover {
+      margin-right: -30px;
+    }
+  }
+}
+
+.pagination {
+  justify-content: space-between;
+  margin-bottom: 5rem;
+}
+
+.about .post {
+  max-width: 1200px;
+  @include margin(5rem auto);
+}
+
+.footer {
+  justify-content: space-between;
+  width: 100%;
+}

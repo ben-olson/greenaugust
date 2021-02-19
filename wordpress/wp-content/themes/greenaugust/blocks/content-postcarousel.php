@@ -3,6 +3,10 @@
   <?php
   $menuItems = wpb_get_menu_items('headers');
   foreach ($menuItems as $item) :
+    $args = array(
+      'posts_per_page' => 5,
+      'cat' => $item->object_id
+    );
 
     // Determines if the menu term is a category or tag
     if (term_exists($item->title, 'post_tag')) {
@@ -10,14 +14,7 @@
         'posts_per_page' => 5,
         'tag_id' => $item->object_id
       );
-
-    } elseif (term_exists($item->title, 'category')) {
-      $args = array(
-        'posts_per_page' => 5,
-        'cat' => $item->object_id
-      );
     }
-
   ?>
 
   <div class="category-heading heading">
