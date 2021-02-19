@@ -1,6 +1,6 @@
 <div class="feature-wrapper-text">
   <div class="tn-title feature-tn-title">
-    <?php echo get_the_title_permalink($post->ID); ?>
+  <?php echo get_post_meta($post->ID, "Published Article Link", true); ?>
   </div>
 
   <div class="tn-meta feature-tn-meta"><?php

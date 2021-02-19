@@ -31,6 +31,24 @@
         
         <?php $term = is_published($q->ID);?>
 
+        <?php 
+        
+          $link = get_field('published-article-url');
+          $target = "_blank";
+          $tab = "external";
+          $rel = "noopener";
+          if (empty($link)) {
+            $target = "_self";
+            $tab = "internal";
+            $link = get_permalink($q->ID);
+          }
+          $title = get_the_title($q->ID);
+          $tag = '<a href="' . $link . '" target="'
+          . $target . '"&quot; rel="' . $rel . '">' . $title . '</a>';
+        ?>
+
+        
+
         <?php $current_month = get_the_date('F'); ?>
         <?php $ahead = $q->posts[$q->current_post + 1]; ?>
         <?php
@@ -71,7 +89,7 @@
             <div class="[ pcon__posts__post ] [ post-link ]">
 
               <h3 class="[ upper font-size:s1 ]">
-                <?php echo get_meta_tags($q->ID); ?>
+                <?php echo $tag; ?>
               </h3>
 
               <?php if ($term) : ?>
@@ -87,7 +105,7 @@
             <div class="[ pcon__posts__post post-link ]">
 
               <h3 class="[ upper font-size:s1 ]">
-                <?php echo get_mood($q->ID); ?>
+                <?php echo $tag; ?>
               </h3>
 
               <?php if ($term) : ?>
@@ -120,7 +138,7 @@
           <div class="[ pcon__posts__post ] [ post-link ]">
 
             <h3 class="[ upper font-size:s1 ]">
-              <?php echo get_mood($q->ID); ?>
+              <?php echo $tag; ?>
             </h3>
 
             <?php if ($term) : ?>

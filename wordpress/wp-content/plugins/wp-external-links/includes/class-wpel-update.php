@@ -59,7 +59,7 @@ final class WPEL_Update extends WPRun_Base_1x0x0
         if ( $site_already_set ) {
             return;
         }
-        
+
         // get default values
         $external_link_values = WPEL_External_Link_Fields::get_instance()->get_default_values();
         $internal_link_values = WPEL_Internal_Link_Fields::get_instance()->get_default_values();

@@ -35,16 +35,15 @@ function get_the_base_permalink($post_id) {
   return $href;
 }
 
-function get_the_title_permalink($post_id) {
-
-  $href = get_post_meta($post_id, 'Published Article Link', true);
+function get_the_title_permalink($link, $post_id) {
+  $href = $link;
   $target = "_blank";
   $tab = "external";
   $rel = "noopener";
-  if (empty($href)) {
-    $href = get_permalink($post_id);
+  if (empty($link)) {
     $target = "_self";
     $tab = "internal";
+    $href = get_permalink($post_id);
   }
   $title = get_the_title($post_id);
   return "<a href=" . $href . " target="
@@ -99,7 +98,5 @@ add_image_size( 'homepage-thumbnail', 300, 300); // Soft Crop Mode
 
 add_action( 'wp_enqueue_scripts', 'greenaugust_scripts' );
 add_action( 'wp_print_styles', 'startwordpress_google_fonts' );
-
-
 
 ?>
