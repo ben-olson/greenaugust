@@ -30,24 +30,7 @@
         <?php $q->the_post(); ?>
         
         <?php $term = is_published($q->ID);?>
-
-        <?php 
-        
-          $link = get_field('published-article-url');
-          $target = "_blank";
-          $tab = "external";
-          $rel = "noopener";
-          if (empty($link)) {
-            $target = "_self";
-            $tab = "internal";
-            $link = get_permalink($q->ID);
-          }
-          $title = get_the_title($q->ID);
-          $tag = '<a href="' . $link . '" target="'
-          . $target . '"&quot; rel="' . $rel . '">' . $title . '</a>';
-        ?>
-
-        
+        <?php $tag = get_the_article_permalink($q->ID); ?>
 
         <?php $current_month = get_the_date('F'); ?>
         <?php $ahead = $q->posts[$q->current_post + 1]; ?>

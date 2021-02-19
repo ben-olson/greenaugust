@@ -27,27 +27,59 @@ function is_published($post_id) {
   
 }
 
-function get_the_base_permalink($post_id) {
-  $href = get_post_meta($post_id, 'Published Article Link', true);
-  if (empty($href)) {
-    $href = get_permalink($post_id);
-  }
-  return $href;
-}
-
-function get_the_title_permalink($link, $post_id) {
-  $href = $link;
+function get_the_article_permalink($post_id) {
+  $link = get_field('published-article-url', $post_id);
   $target = "_blank";
   $tab = "external";
   $rel = "noopener";
   if (empty($link)) {
     $target = "_self";
     $tab = "internal";
-    $href = get_permalink($post_id);
+    $link = get_permalink($post_id);
   }
   $title = get_the_title($post_id);
-  return "<a href=" . $href . " target="
-    . $target . "&quot; rel=" . $rel . ">" . $title . "</a>";
+  return '<a href="' . $link . '" target="'
+  . $target . '"&quot; rel="' . $rel . '">' . $title . '</a>';
+}
+
+function get_the_article_permalink_pag_prev($post_id) {
+  $prev = get_adjacent_post(false, '', false);
+  if (!empty($prev)) {
+    $prev = $prev->ID;
+    $link = get_field('published-article-url', $prev);
+    $target = "_blank";
+    $tab = "external";
+    $rel = "noopener";
+    if (empty($link)) {
+      $target = "_self";
+      $tab = "internal";
+      $link = get_permalink($prev);
+    }
+    $title = get_the_title($prev);
+    return '<a class="left" href="' . $link . '" target="'
+    . $target . '"&quot; rel="' . $rel . '">&larr;&nbsp;' . $title . '</a>';
+  }
+  return '&nbsp;';
+}
+
+function get_the_article_permalink_pag_next($post_id) {
+  $next = get_adjacent_post(false, '', true);
+  if (!empty($next)) {
+    $next = $next->ID;
+    $link = get_field('published-article-url', $next);
+    $target = "_blank";
+    $tab = "external";
+    $rel = "noopener";
+    if (empty($link)) {
+      $target = "_self";
+      $tab = "internal";
+      $link = get_permalink($next);
+    }
+    $title = get_the_title($next);
+    return '<a class="right" href="' . $link . '" target="'
+    . $target . '"&quot; rel="' . $rel . '">' . $title . '&nbsp;&rarr;</a>';
+  }
+  return '&nbsp;';
 }
 
 function show_last_modified_date() {

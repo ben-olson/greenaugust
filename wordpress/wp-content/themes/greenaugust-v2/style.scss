@@ -144,6 +144,8 @@ html {
   max-width: 1880px;
   @include padding(0 5vw 3vw 5vw);
   @include margin(auto auto);
+  @include flex(true);
+  min-height: 100vh;
 }
 
 .flex {@include flex;}
@@ -211,7 +213,8 @@ blockquote {
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
-  margin-bottom: 5rem;
+  margin-bottom: 3rem;
+  margin-top: 1rem;
 }
 
 .splash {
@@ -319,6 +322,11 @@ blockquote {
     @include padding(5rem 0);
     border-top: 1px solid black;
     border-bottom: 1px solid black;
+    & * {
+      max-width: 100%;
+      margin-left: auto;
+      margin-right: auto;
+    }
   }
 
 }
@@ -339,6 +347,7 @@ blockquote {
 .pagination {
   justify-content: space-between;
   margin-bottom: 5rem;
+  margin-top: auto;
 }
 
 .about .post {

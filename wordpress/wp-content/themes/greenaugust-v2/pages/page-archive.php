@@ -22,6 +22,9 @@
         <?php $q->the_post(); ?>
         
         <?php $term = is_published($q->ID);?>
+        <?php $tag = get_the_article_permalink($q->ID); ?>
+
+        
 
         <?php $current_month = get_the_date('F'); ?>
         <?php $ahead = $q->posts[$q->current_post + 1]; ?>
@@ -60,10 +63,10 @@
 
           <?php if ($current_month === $new_date) : ?>
             
-            <div class="[ pcon__posts__post ]">
+            <div class="[ pcon__posts__post ] [ post-link ]">
 
               <h3 class="[ upper font-size:s1 ]">
-                <?php echo get_the_title_permalink($q->ID); ?>
+                <?php echo $tag; ?>
               </h3>
 
               <?php if ($term) : ?>
@@ -76,10 +79,10 @@
 
           <?php else : ?>
 
-            <div class="[ pcon__posts__post ]">
+            <div class="[ pcon__posts__post post-link ]">
 
               <h3 class="[ upper font-size:s1 ]">
-                <?php echo get_the_title_permalink($q->ID); ?>
+                <?php echo $tag; ?>
               </h3>
 
               <?php if ($term) : ?>
@@ -109,10 +112,10 @@
 
           <?php endif; ?>
 
-          <div class="[ pcon__posts__post ]">
+          <div class="[ pcon__posts__post ] [ post-link ]">
 
             <h3 class="[ upper font-size:s1 ]">
-              <?php echo get_the_title_permalink($q->ID); ?>
+              <?php echo $tag; ?>
             </h3>
 
             <?php if ($term) : ?>

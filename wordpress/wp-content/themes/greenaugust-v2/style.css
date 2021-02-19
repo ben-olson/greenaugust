@@ -137,6 +137,14 @@ html {
   max-width: 1880px;
   padding: 0 5vw 3vw 5vw;
   margin: auto auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  min-height: 100vh;
 }
 
 .flex {
@@ -248,7 +256,8 @@ blockquote p {
           align-items: center;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
-  margin-bottom: 5rem;
+  margin-bottom: 3rem;
+  margin-top: 1rem;
 }
 
 .splash {
@@ -374,6 +383,12 @@ blockquote p {
   border-bottom: 1px solid black;
 }
 
+.post__body * {
+  max-width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .post__prev:hover {
   margin-left: -30px;
 }
@@ -387,6 +402,7 @@ blockquote p {
       -ms-flex-pack: justify;
           justify-content: space-between;
   margin-bottom: 5rem;
+  margin-top: auto;
 }
 
 .about .post {
