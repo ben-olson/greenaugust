@@ -294,6 +294,7 @@ blockquote {
   &::after {
     background: none repeat scroll 0 0 transparent;
     bottom: 0;
+    left: 0;
     content: "";
     display: block;
     height: 2px;
